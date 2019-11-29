@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="data1"></div>
+  <div id="data2"></div>
+  <div id="data3"></div>
+  <script>
+    const jsonp = (url) => {
+      const callbackName = 'whp'
+      //为什么要定义callback呢？这个get请求已经被发出去了，那么我们如何接口请求回来的数据呢，callback=func则可以帮我们做这件事。
+      return new Promise((resolve, reject) => {
+        window[callbackName] = (res) => {
+          resolve(res)
+        }
+        let script = document.createElement('script');
+        script.setAttribute('src', `${url}` + '?callback=' + `${callbackName}`)
+        document.body.appendChild(script)
+      })
+    }
+
+    jsonp('http://localhost:3000').then(res => {
+      console.log(res);
+      document.getElementById("data1").innerHTML = res.data.name
+      document.getElementById("data2").innerHTML = res.data.time
+      document.getElementById("data3").innerHTML = res.message
+    })
+  </script>
+</body>
+
+</html>
