@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Demo extends Component {
+export default class Error extends Component {
   render() {
     return (
       <div>
-        123
+        404
       </div>
     )
   }

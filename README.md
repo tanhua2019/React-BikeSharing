@@ -177,9 +177,7 @@ menu = (data) => {
 ```
 
 ## 头部Header组件的实现
-
-
-## 百度天气API
+### 百度天气API
 [天气API](http://api.map.baidu.com/telematics/v3/weather?location=foshan&output=json&ak=3p49MVra6urFRGOT9s8UBWr2)
 [参考文献](https://blog.csdn.net/weixin_44370887/article/details/102810616)
 
@@ -189,10 +187,10 @@ menu = (data) => {
 encodeURIComponent(city) encodeURIComponent('北京')
 "%E5%8C%97%E4%BA%AC"
 
-## JSONP 
+### JSONP 
 [参考文章](https://www.cnblogs.com/lovellll/p/10180081.html)
 [参考文章](https://blog.csdn.net/badmoonc/article/details/82289252)
-### jsonp如何产生的
+#### jsonp如何产生的
 1. Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准。
 2. Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<\script>、<\img>、<\iframe>）
 3. 在远程服务器上设法把数据装进js格式的文件里，供客户端调用和进一步处理
@@ -202,3 +200,28 @@ encodeURIComponent(city) encodeURIComponent('北京')
 7. 为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。
 - jsonP说白了，就是在json字符串外面包上一个：参数名称+左右括弧！
 类似这样：jsonpCallback([{“ID”:1,“Name”:“张三”},{“ID”:2,“Name”:“李四”}])
+
+## 底部组件的实现
+
+### 使用css实现箭头图标
+- 指的边框的颜色，而transparent则设为了透明。
+```JavaScript
+.aaa {
+   width: 0;
+   height: 0;
+   border-left: 50px solid transparent;
+   border-right: 50px solid transparent;
+   border-top: 50px solid black;
+   /* border-bottom: 50px solid green; */
+}
+```
+
+# React Router 4.0
+- <Route path="/login" component={Login}> //当匹配到/login路径的时候加载Login组件
+- <Link to={{pathname: '/three/7'}}>Three #7<Link>
+- <Route path="/three/:number"> 取值this.props.match.parpams.number
+- Link {pathname:'/', search:'',key:'abc123' state: {}}
+- Redirect 路由重定向 <Redirect to="/admin/home/">
+
+- exact 精确匹配某一个路由 / 和 /home 如果不加exact会匹配到两个组件
+- Switch 一旦匹配到一个路由之后就不再继续匹配之后的路由
